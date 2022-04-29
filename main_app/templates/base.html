@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Animes Reviewer</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</head>
+<body>
+	<header class="navbar-fixed">
+		<nav>
+			<div class="nav-wrapper #000000 black">
+				<ul>
+					<li><a href="/" class="left brand-logo">&nbsp;&nbsp;Animes Reviewer</a></li>
+				</ul>
+				<ul class="right">
+					<!-- changes below -->
+					<li><a href="{% url 'about' %}">About</a></li>
+					{% if user.is_authenticated %}
+					  <li><a href="{% url 'animes_create' %}">Add an Anime</a></li>
+					  <li><a href="{% url 'index' %}">View All My Animes</a></li>
+					  <li><a href="{% url 'logout' %}">Log Out</a></li>
+					{% else %}
+					  <li><a href="{% url 'login' %}">Log In</a></li>
+					  <li><a href="{% url 'signup' %}">SignUp</a></li>
+					{% endif %}
+				  </ul>
+			</div>
+		</nav>
+	</header>
+	<main class="container">
+		{% block content %}
+		{% endblock %}
+	</main>
+	<footer class="page-footer #000000 black">
+		<div class="right"></div>
+	</footer>
+</body>
+
+</html>
