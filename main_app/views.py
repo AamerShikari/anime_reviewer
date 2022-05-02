@@ -8,7 +8,9 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Anime 
+from .models import Anime, Review
+from .forms import ReviewForm
+
 
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
@@ -64,3 +66,11 @@ class AnimeDelete(LoginRequiredMixin, DeleteView):
   model = Anime
   success_url = '/animes/'
 
+def  add_review(request, anime_id):
+  form = ReviewForm(request.POST)
+  if form.is_valid():
+    new_review = form.save(commit=False)
+    new_review.anime_id = anime_id
+    new_review.save()
+  
+  return redirect('detail', anime_id=anime_id)
