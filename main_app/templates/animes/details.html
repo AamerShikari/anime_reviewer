@@ -8,29 +8,25 @@
     <div class="col s6">
         <div class="card">
             <div class="card-content">
-                <span class="card-title">{{anime.title}} 
+                <span class="card-title">{{anime.title}}</span>
                     <p>{{ anime.category }}</p>
                     <p>{{ anime.language }}</p>
                     <p>{{ anime.description }}</p>
-                </span>
             </div>
             <div class="card-action">
                 <a href="{% url 'animes_update' anime.id %}">Edit</a>
                 <a href="{% url 'animes_delete' anime.id %}">Delete</a>
             </div>
         </div>
-
     </div>
     <div class="col s6">
         <div class="card">
             <div class="card-content">
-                <div class="card-action">
-                    <span class="card-title">
-                    {% for character in charcters %}
-                        
+                    <span class="card-title">Characters</span>
+                    {% for character in anime.character_set.all %}
+                        <li>{{ character.name}}</li>
+                        <br>{{ character.description}}
                     {% endfor %}
-                    </span>
-                </div>
             </div>
         </div>  
     </div>

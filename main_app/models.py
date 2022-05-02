@@ -19,15 +19,12 @@ class Anime(models.Model):
     def get_absolute_url(self):
         return reverse('detail', kwargs={'anime_id':self.id})
 
-class Characters(models.Model):
+class Character(models.Model):
 	name = models.CharField(max_length=200)
 	description = models.TextField()
 
 	anime = models.ForeignKey(Anime, on_delete=models.CASCADE)
 
 	def __str__(self):
-		# this method will gives us the friendly meal choices value, so like Breakfast instead of B
-		return f"{self.get_meal_display()} on {self.date}"
+		return f"{self.name} from {self.anime}"
 
-	class Meta:
-		ordering = ['-date']
