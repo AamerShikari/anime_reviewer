@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<h1>Add Character</h1>
+
+<form action="{% url 'characters_create' anime_id%}" method="POST">
+	{% csrf_token %}
+	<table>
+		{{ char_form.as_table }}
+	</table>
+
+	<input type="submit" value="submit!" class="btn" />
+</form>
+{% endblock content %}

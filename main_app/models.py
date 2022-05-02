@@ -21,10 +21,12 @@ class Anime(models.Model):
         return reverse('detail', kwargs={'anime_id':self.id})
 
 class Character(models.Model):
-	name = models.CharField(max_length=200)
-	description = models.CharField(max_length=100)
-	anime = models.ForeignKey(Anime, on_delete=models.CASCADE)
+    name = models.CharField(max_length=200)
+    description = models.CharField(max_length=100)
+    anime = models.ForeignKey(Anime, on_delete=models.CASCADE)
 
-	def __str__(self):
-		return f"{self.name} from {self.anime}"
+    def __str__(self):
+        return f"{self.name} from {self.anime}"
 
+    def get_absolute_url(self):
+        return reverse('character_detail', kwargs={'anime_id':self.anime.id, 'character_id':self.id})

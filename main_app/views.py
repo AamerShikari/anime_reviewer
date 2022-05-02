@@ -12,6 +12,7 @@ from .models import Anime, Character
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .forms import CharacterForm
 
+
 # Define the home view
 def home(request):
   return render(request, 'index.html')
@@ -49,8 +50,20 @@ def animes_detail(request, anime_id):
 @login_required
 def characters_index(request, anime_id):
     character = Character.objects.filter(anime=anime_id)
-    return render(request, 'characters/index.html', {'character': character})
-  
+    anime = Anime.objects.get(id=anime_id)
+    return render(request, 'characters/index.html', {'character': character, 'anime':anime})
+
+def character_detail(request, anime_id, character_id):
+    character = Character.objects.get(id=character_id)
+    return render(request, 'characters/detail.html', {'character': character})
+
+class character_update(LoginRequiredMixin, UpdateView):
+  model = Character
+  fields =['name','description']
+
+class character_delete(LoginRequiredMixin, DeleteView):
+  model = Character
+  success_url = '/animes/'
 
 class AnimeCreate(LoginRequiredMixin, CreateView):
   model = Anime
@@ -67,11 +80,22 @@ class AnimeDelete(LoginRequiredMixin, DeleteView):
   model = Anime
   success_url = '/animes/'
 
-def add_character(request, anime_id):
+# class CharactersCreate(LoginRequiredMixin, CreateView):
+#   model = Character
+#   fields = ['name', 'description']
+#   def form_valid(self, form):
+#     form.instance.anime = self.request.anime_id  # form.instance is the anime
+#     return super().form_valid(form)
+
+def CharactersCreate(request, anime_id):
   form = CharacterForm(request.POST)
   if form.is_valid():
-    new_character = form.save(commit=False)
-    new_character.anime_id = anime_id
-    new_character.save()
-  return redirect('detail', anime_id = anime_id)
+     new_char = form.save(commit=False)
+     new_char.anime_id = anime_id
+     new_char.save()
+  return redirect('detail', anime_id)
 
+def character_adding(request, anime_id):
+  char_form = CharacterForm()
+  return render(request, 'main_app/charcterAddingForm.html', {'anime_id':anime_id, 'char_form': char_form})
+    

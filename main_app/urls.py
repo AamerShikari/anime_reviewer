@@ -11,6 +11,10 @@ urlpatterns = [
 	path('accounts/signup/', views.signup, name='signup'),
 	path('animes/create/', views.AnimeCreate.as_view(), name='animes_create'),
 	path('animes/<int:pk>/update/', views.AnimeUpdate.as_view(), name='animes_update'),
+	path('animes/<int:anime_id>/characters/add', views.character_adding, name='character_adding'),
+	path('animes/<int:anime_id>/characters/create', views.CharactersCreate, name='characters_create'),
 	path('animes/<int:anime_id>/characters/', views.characters_index, name='characters_index'),
-	path('animes/<int:anime_id>/characters/add_character/', views.add_character, name='add_character')
+	path('animes/<int:anime_id>/characters/<int:character_id>', views.character_detail, name='character_detail'),
+	path('animes/<int:anime_id>/characters/<int:pk>/update/', views.character_update.as_view(), name='character_update'),
+	path('animes/<int:anime_id>/characters/<int:pk>/delete/', views.character_delete.as_view(), name='character_delete'),
 ]
