@@ -8,7 +8,11 @@
     <div class="col s6">
         <div class="card">
             <div class="card-content">
-                <span class="card-title">{{anime.title}} {{ anime.category }} {{ anime.language }} {{ anime.description }}</span>
+                <span class="card-title">{{anime.title}} 
+                    <p>{{ anime.category }}</p>
+                    <p>{{ anime.language }}</p>
+                    <p>{{ anime.description }}</p>
+                </span>
             </div>
             <div class="card-action">
                 <a href="{% url 'animes_update' anime.id %}">Edit</a>
@@ -16,6 +20,19 @@
             </div>
         </div>
 
+    </div>
+    <div class="col s6">
+        <div class="card">
+            <div class="card-content">
+                <div class="card-action">
+                    <span class="card-title">
+                    {% for character in charcters %}
+                        
+                    {% endfor %}
+                    </span>
+                </div>
+            </div>
+        </div>  
     </div>
 </div>
 
