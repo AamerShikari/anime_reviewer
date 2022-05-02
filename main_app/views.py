@@ -45,9 +45,12 @@ def animes_index(request):
 @login_required
 def animes_detail(request, anime_id):
     anime = Anime.objects.get(id=anime_id)
-    return render(request, 'animes/details.html', {'anime': anime})
+    form = ReviewForm()
+    reviews = Review.objects.filter(anime=anime_id)
+    return render(request, 'animes/details.html', {'anime': anime,'form':form,'reviews':reviews})
 
-   
+    
+
 
 
 

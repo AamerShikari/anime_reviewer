@@ -12,6 +12,6 @@ urlpatterns = [
 	path('animes/create/', views.AnimeCreate.as_view(), name='animes_create'),
 	path('animes/<int:pk>/update/', views.AnimeUpdate.as_view(), name='animes_update'),
 
-	path('cats/<int:anime_id>/add_review/', views.add_review, name='add_review'),
+	path('animes/<int:anime_id>/add_review/', views.add_review, name='add_review'),
 
 ]
