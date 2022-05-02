@@ -12,4 +12,6 @@ urlpatterns = [
 	path('animes/create/', views.AnimeCreate.as_view(), name='animes_create'),
 	path('animes/<int:pk>/update/', views.AnimeUpdate.as_view(), name='animes_update'),
 
+	
+
 ]

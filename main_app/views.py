@@ -8,7 +8,8 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Anime
+from .models import Anime 
+
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 # Define the home view
@@ -43,7 +44,10 @@ def animes_index(request):
 def animes_detail(request, anime_id):
     anime = Anime.objects.get(id=anime_id)
     return render(request, 'animes/details.html', {'anime': anime})
-  
+
+   
+
+
 
 class AnimeCreate(LoginRequiredMixin, CreateView):
   model = Anime
