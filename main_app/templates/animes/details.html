@@ -5,17 +5,31 @@
 <h1>Anime Details</h1>
 
 <div class="row">
-    <div class="col s6">
+    <div class="col s12">
         <div class="card">
             <div class="card-content">
-                <span class="card-title">{{anime.title}} {{ anime.category }} {{ anime.language }} {{ anime.description }}</span>
+                <span class="card-title">{{anime.title}}</span>
+                <p>{{ anime.category }}</p>
+                <p>{{ anime.language }}</p>
+                <p>{{ anime.description }}</p>
             </div>
             <div class="card-action">
                 <a href="{% url 'animes_update' anime.id %}">Edit</a>
                 <a href="{% url 'animes_delete' anime.id %}">Delete</a>
             </div>
         </div>
-
+    </div>
+    </hr>
+    <div class="col s12">
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">Characters</span>
+                {% for character in character %}
+                <li>{{ character.name}} - {{ character.description}}</li>
+                {% endfor %}
+                <a href="{% url 'characters_index' anime.id%}">more</a>
+            </div>
+        </div>
     </div>
 </div>
 

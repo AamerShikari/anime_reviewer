@@ -1,4 +1,10 @@
 
+{% extends 'base.html' %}
+{% block title %}Login{% endblock %}
+
+
+
+{% block content %}
 <h1>Log In</h1>
 
 <!-- Add the login form -->
@@ -8,3 +14,6 @@
   <input type="submit" class="btn" value="login">
   <input type="hidden" name="next" value="{{ next }}">
 </form>
+
+
+{% endblock content %}
