@@ -5,7 +5,7 @@
 <h1>Anime Details</h1>
 
 <div class="row">
-    <div class="col s6">
+    <div class="col s12">
         <div class="card">
             <div class="card-content">
                 <span class="card-title">{{anime.title}}</span>
@@ -19,16 +19,23 @@
             </div>
         </div>
     </div>
-    <div class="col s6">
+</hr>
+    <div class="col s12">
         <div class="card">
             <div class="card-content">
                     <span class="card-title">Characters</span>
                     {% for character in anime.character_set.all %}
-                        <li>{{ character.name}}</li>
-                        <br>{{ character.description}}
+                        <li>{{ character.name}} - {{ character.description}}
+                            <span>update/edit</span>
+                        </li>
                     {% endfor %}
+                    <form action="{% url 'add_character' anime.id%}" method="post">
+                        {% csrf_token %}
+                        {{ character_form.as_p }}
+                        <input type="submit" class="btn" value="Add Characters">
+                    </form> 
             </div>
-        </div>  
+        </div>     
     </div>
 </div>
 

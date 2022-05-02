@@ -10,6 +10,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Anime
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from .forms import CharacterForm
 
 # Define the home view
 def home(request):
@@ -42,7 +43,8 @@ def animes_index(request):
 @login_required
 def animes_detail(request, anime_id):
     anime = Anime.objects.get(id=anime_id)
-    return render(request, 'animes/details.html', {'anime': anime})
+    character_form = CharacterForm()
+    return render(request, 'animes/details.html', {'anime': anime, 'character_form': character_form})
   
 
 class AnimeCreate(LoginRequiredMixin, CreateView):
@@ -59,4 +61,12 @@ class AnimeUpdate(LoginRequiredMixin, UpdateView):
 class AnimeDelete(LoginRequiredMixin, DeleteView):
   model = Anime
   success_url = '/animes/'
+
+def add_character(request, anime_id):
+  form = CharacterForm(request.POST)
+  if form.is_valid():
+    new_character = form.save(commit=False)
+    new_character.anime_id = anime_id
+    new_character.save()
+  return redirect('detail', anime_id = anime_id)
 
