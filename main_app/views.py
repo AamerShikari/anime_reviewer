@@ -8,7 +8,7 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Anime
+from .models import Anime, Character
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .forms import CharacterForm
 
@@ -43,8 +43,13 @@ def animes_index(request):
 @login_required
 def animes_detail(request, anime_id):
     anime = Anime.objects.get(id=anime_id)
-    character_form = CharacterForm()
-    return render(request, 'animes/details.html', {'anime': anime, 'character_form': character_form})
+    character = Character.objects.filter(anime=anime_id)[:5]
+    return render(request, 'animes/details.html', {'anime': anime, 'character': character})
+
+@login_required
+def characters_index(request, anime_id):
+    character = Character.objects.filter(anime=anime_id)
+    return render(request, 'characters/index.html', {'character': character})
   
 
 class AnimeCreate(LoginRequiredMixin, CreateView):

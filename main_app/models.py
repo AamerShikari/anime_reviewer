@@ -23,7 +23,6 @@ class Anime(models.Model):
 class Character(models.Model):
 	name = models.CharField(max_length=200)
 	description = models.CharField(max_length=100)
-
 	anime = models.ForeignKey(Anime, on_delete=models.CASCADE)
 
 	def __str__(self):

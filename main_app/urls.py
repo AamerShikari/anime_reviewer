@@ -11,5 +11,6 @@ urlpatterns = [
 	path('accounts/signup/', views.signup, name='signup'),
 	path('animes/create/', views.AnimeCreate.as_view(), name='animes_create'),
 	path('animes/<int:pk>/update/', views.AnimeUpdate.as_view(), name='animes_update'),
-	path('animes/<int:anime_id>/add_character/', views.add_character, name='add_character')
+	path('animes/<int:anime_id>/characters/', views.characters_index, name='characters_index'),
+	path('animes/<int:anime_id>/characters/add_character/', views.add_character, name='add_character')
 ]
