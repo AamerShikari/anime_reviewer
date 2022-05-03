@@ -80,6 +80,14 @@ class AnimeCreate(LoginRequiredMixin, CreateView):
   fields =['title','category','language','description']
   def form_valid(self, form):
     form.instance.user = self.request.user  # form.instance is the anime
+    gis = GoogleImagesSearch('AIzaSyAXHd4AyJU6owOe8wU9sWOnO4H-kdY0Uks', '5b0179e1a661156ee')
+    _search_params = {
+     'q': str(form.instance.title) + "+Anime+Cover",
+     'num': 1,
+     'fileType': 'jpg|gif|png',
+    }
+    gis.search(search_params=_search_params)
+    form.instance.img_url = gis.results()[0].url
     return super().form_valid(form)
 
 class AnimeUpdate(LoginRequiredMixin, UpdateView):
@@ -112,7 +120,7 @@ def CharactersCreate(request, anime_id):
     new_char.anime_id = anime_id
     gis = GoogleImagesSearch('AIzaSyAXHd4AyJU6owOe8wU9sWOnO4H-kdY0Uks', '5b0179e1a661156ee')
     _search_params = {
-     'q': str(new_char),
+     'q': str(new_char) + "+Solo",
      'num': 1,
      'fileType': 'jpg|gif|png',
     }
