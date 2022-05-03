@@ -4,13 +4,16 @@
 <h1>Anime List</h1>
 
 {% for anime in animes %}
-<a href="{% url 'detail' anime.id %}">
-<div class="card">
+<a href="{% url 'detail' anime.id %}" style="color:black">
+<div class="card horizontal" style="display:flexbox;" >
     <div class="card-content">
+      <img src="{{anime.img_url}}" height="135px" width="135px">
+    </div>
+    <div class="card-content" id="index_card">
       <span class="card-title">{{ anime.title }}</span>
       <p>Category: {{ anime.category }}</p>
       <p>Languages: {{ anime.language }}</p>
-      <p>descritpion: {{ anime.description }}</p>
+      <p>Descritpion: {{ anime.description }}</p>
     </div>
   </div>
 </a>

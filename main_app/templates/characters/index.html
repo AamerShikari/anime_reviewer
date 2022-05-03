@@ -3,16 +3,20 @@
 
 <h1>Characters List</h1>
 
-{% for character in character %}
-<a href="{% url 'character_detail' character.anime.id character.id %}">
-<div class="card">
-    <div class="card-content">
-      <span class="card-title">{{ character.name }}</span>
-      <p>description: {{ character.description }}</p>
-    </div>
+{% for character in characters %}
+<a href="{% url 'character_detail' character.anime.id character.id %}" style="color:black;">
+  <div class="col s12">
+      <div class="card horizontal">
+          <div class="card-image">
+              <img src="{{character.img_url}}" height="100px" width="100px">
+          </div>
+          <div class="card-stacked">
+              <span class="card-title">{{ character.name }}</span>
+              <p>{{character.description}}</p>
+          </div>
+      </div>
   </div>
 </a>
-
 {% endfor %}
 <a href="{% url 'character_adding' anime.id%}">Add a Character</a>
 {% endblock %}

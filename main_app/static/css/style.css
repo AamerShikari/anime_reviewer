@@ -2,6 +2,7 @@ body {
 	display: flex;
 	min-height: 100vh;
 	flex-direction: column;
+  background-color: antiquewhite;
   }
   
   main {
@@ -18,3 +19,30 @@ label {
 
 }
 
+a:hover {
+  color: red !important;
+}
+
+.horizontal p {
+  font-size: 20px;
+}
+
+.card {
+  background-color: white;
+}
+
+.card-title {
+  font-size: 40px !important;
+  font-weight: bold !important;
+  text-align: center !important;
+}
+
+#index_card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h2 {
+  font-size: 75px;
+}

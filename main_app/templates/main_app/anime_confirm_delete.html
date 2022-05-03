@@ -3,9 +3,9 @@
 
 {% block content %}
 
-<h1>Delete Your Car</h1>
+<h1>Confirm</h1>
 
-<h4>Are you sure you want to delete <span class="teal-text">{{ object.make }} {{ object.model }}</span>?</h4>
+<h4>Are you sure you want to delete <span class="teal-text">{{object.title}}</span>?</h4>
 
 <form action="" method="POST">
   {% csrf_token %}

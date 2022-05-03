@@ -53,14 +53,14 @@ def animes_detail(request, anime_id):
 
     form = ReviewForm()
     reviews = Review.objects.filter(anime=anime_id)
-    character = Character.objects.filter(anime=anime_id)[:5]
-    return render(request, 'animes/details.html', {'anime': anime,'form':form,'reviews':reviews, 'character': character})
+    characters = Character.objects.filter(anime=anime_id)[:5]
+    return render(request, 'animes/details.html', {'anime': anime,'form':form,'reviews':reviews, 'characters': characters})
 
 @login_required
 def characters_index(request, anime_id):
-    character = Character.objects.filter(anime=anime_id)
+    characters = Character.objects.filter(anime=anime_id)
     anime = Anime.objects.get(id=anime_id)
-    return render(request, 'characters/index.html', {'character': character, 'anime':anime})
+    return render(request, 'characters/index.html', {'characters': characters, 'anime':anime})
 
 @login_required
 def character_detail(request, anime_id, character_id):
@@ -82,7 +82,7 @@ class AnimeCreate(LoginRequiredMixin, CreateView):
     form.instance.user = self.request.user  # form.instance is the anime
     gis = GoogleImagesSearch('AIzaSyAXHd4AyJU6owOe8wU9sWOnO4H-kdY0Uks', '5b0179e1a661156ee')
     _search_params = {
-     'q': str(form.instance.title) + "+Anime+Cover",
+     'q': str(form.instance.title) + "+Cover",
      'num': 1,
      'fileType': 'jpg|gif|png',
     }
@@ -120,7 +120,7 @@ def CharactersCreate(request, anime_id):
     new_char.anime_id = anime_id
     gis = GoogleImagesSearch('AIzaSyAXHd4AyJU6owOe8wU9sWOnO4H-kdY0Uks', '5b0179e1a661156ee')
     _search_params = {
-     'q': str(new_char) + "+Solo",
+     'q': str(new_char) + "+Character",
      'num': 1,
      'fileType': 'jpg|gif|png',
     }
