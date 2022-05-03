@@ -10,6 +10,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Anime, Review
 from .forms import ReviewForm
+# from django.urls import reverse_lazy
 
 
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -77,3 +78,10 @@ def  add_review(request, anime_id):
     new_review.save()
   
   return redirect('detail', anime_id=anime_id)
+
+class ReviewDelete(DeleteView):
+  model = Review
+  success_url ='/animes/'
+  # def get_success_url(self):
+  #   anime_id = self.kwargs[anime_id]
+  #   return reverse_lazy('details', kwargs={'anime_id':anime_id})

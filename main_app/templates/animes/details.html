@@ -31,7 +31,9 @@
     <dt>Content: {{review.content}}</dt>
     <dt>Rating: {{review.rating}}</dt>
 </tr>
-</div> 
+    <div class="card-action">
+     <a href="{% url 'reviews_delete' review.id %}">Delete</a>
+    </div>
 {% endfor %}
     
 {% endblock %}
