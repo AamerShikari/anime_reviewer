@@ -32,7 +32,7 @@
     <dt>Rating: {{review.rating}}</dt>
 </tr>
     <div class="card-action">
-     <a href="{% url 'reviews_delete' review.id %}">Delete</a>
+     <a href="{% url 'reviews_delete' review.anime.id review.id %}">Delete</a>
     </div>
 {% endfor %}
     

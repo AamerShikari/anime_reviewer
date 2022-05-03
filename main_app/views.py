@@ -48,6 +48,7 @@ def animes_detail(request, anime_id):
     anime = Anime.objects.get(id=anime_id)
     form = ReviewForm()
     reviews = Review.objects.filter(anime=anime_id)
+    print(reviews)
     return render(request, 'animes/details.html', {'anime': anime,'form':form,'reviews':reviews})
 
     
