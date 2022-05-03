@@ -16,6 +16,7 @@ class Anime(models.Model):
     language = models.CharField(max_length=100)
     description = models.CharField(max_length=500)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    img_url = models.CharField(max_length=2048)
 
     def __str__(self):
         return f"{self.title}"
