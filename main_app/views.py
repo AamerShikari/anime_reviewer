@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 
 # Add the following import
 import uuid
-import boto3 
+import boto3, requests, random
 from django.http import HttpResponse
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
@@ -11,7 +11,12 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Anime, Character
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .forms import CharacterForm
+from google_images_search import GoogleImagesSearch
 
+def replace_spaces(str):
+  str.strip()
+  str.replace(" ", "+")
+  return str
 
 # Define the home view
 def home(request):
@@ -90,9 +95,22 @@ class AnimeDelete(LoginRequiredMixin, DeleteView):
 def CharactersCreate(request, anime_id):
   form = CharacterForm(request.POST)
   if form.is_valid():
-     new_char = form.save(commit=False)
-     new_char.anime_id = anime_id
-     new_char.save()
+    new_char = form.save(commit=False)
+    new_char.anime_id = anime_id
+    gis = GoogleImagesSearch('AIzaSyAXHd4AyJU6owOe8wU9sWOnO4H-kdY0Uks', '5b0179e1a661156ee')
+    _search_params = {
+     'q': str(new_char),
+     'num': 1,
+     'fileType': 'jpg|gif|png',
+    }
+    gis.search(search_params=_search_params)
+    new_char.img_url = gis.results()[0].url
+    url = 'https://animechan.vercel.app/api/'
+    headers = 'quotes/character?name=' + replace_spaces(new_char.name)
+    response = requests.get(url + headers)
+    data = response.json()
+    new_char.quote = random.choice(data)['quote']
+    new_char.save()
   return redirect('detail', anime_id)
 
 def character_adding(request, anime_id):
