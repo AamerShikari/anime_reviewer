@@ -1,7 +1,10 @@
+
 from email.mime import image
 from django.db import models
 from django.contrib.auth.models import User
+from django.db import models
 from django.urls import reverse
+from django.core.validators import MaxValueValidator, MinValueValidator 
 
 
 # from django.urls import reverse
@@ -20,6 +23,16 @@ class Anime(models.Model):
     def get_absolute_url(self):
         return reverse('detail', kwargs={'anime_id':self.id})
 
+
+class Review(models.Model):
+    content = models.CharField(max_length=1000)
+    # rating = models.IntegerField(max_length=1)
+    rating = models.PositiveIntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(5)],
+        default=5
+        )
+    anime = models.ForeignKey(Anime, on_delete=models.CASCADE)
+
 class Character(models.Model):
     name = models.CharField(max_length=200)
     description = models.CharField(max_length=100)
@@ -30,3 +43,4 @@ class Character(models.Model):
 
     def get_absolute_url(self):
         return reverse('character_detail', kwargs={'anime_id':self.anime.id, 'character_id':self.id})
+
