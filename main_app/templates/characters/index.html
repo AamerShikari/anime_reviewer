@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Characters List</h1>
+
+{% for character in character %}
+<a href="{% url 'character_detail' character.anime.id character.id %}">
+<div class="card">
+    <div class="card-content">
+      <span class="card-title">{{ character.name }}</span>
+      <p>description: {{ character.description }}</p>
+    </div>
+  </div>
+</a>
+
+{% endfor %}
+<a href="{% url 'character_adding' anime.id%}">Add a Character</a>
+{% endblock %}

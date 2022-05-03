@@ -3,11 +3,7 @@
 
 {% block content %}
 
-{% if object %}
-<h1>Edit <span class="teal-text">{{object.make}}</span></h1>
-{% else %}
-<h1>Add Anime</h1>
-{% endif %}
+<h1>Edit Character</h1>
 
 <form action="" method="POST">
 	{% csrf_token %}

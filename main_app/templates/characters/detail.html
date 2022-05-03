@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>{{ character.name }}</h1>
+
+
+<div class="card">
+    <div class="card-content">
+      <p>description: {{ character.description }}</p>
+      <div class="card-action">
+        <a href="{% url 'character_update' character.anime.id character.id %}">Edit</a>
+        <a href="{% url 'character_delete' character.anime.id character.id %}">Delete</a>
+    </div>
+    </div>
+</div>
+
+
+{% endblock %}
