@@ -2,11 +2,12 @@
 {% block content %}
 
 <h1>{{ character.name }}</h1>
-
+<img src='{{character.img_url}}' height="250px" width="250px">
 
 <div class="card">
     <div class="card-content">
       <p>description: {{ character.description }}</p>
+      <p>Quote: {{ character.quote }}</p>
       <div class="card-action">
         <a href="{% url 'character_update' character.anime.id character.id %}">Edit</a>
         <a href="{% url 'character_delete' character.anime.id character.id %}">Delete</a>

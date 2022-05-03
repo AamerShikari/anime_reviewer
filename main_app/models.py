@@ -18,7 +18,7 @@ class Anime(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.title} is a {self.category}"
+        return f"{self.title}"
 
     def get_absolute_url(self):
         return reverse('detail', kwargs={'anime_id':self.id})
@@ -37,6 +37,8 @@ class Character(models.Model):
     name = models.CharField(max_length=200)
     description = models.CharField(max_length=100)
     anime = models.ForeignKey(Anime, on_delete=models.CASCADE)
+    img_url = models.CharField(max_length=2048)
+    quote = models.CharField(max_length=1000)
 
     def __str__(self):
         return f"{self.name} from {self.anime}"
