@@ -120,17 +120,21 @@ def CharactersCreate(request, anime_id):
     new_char.anime_id = anime_id
     gis = GoogleImagesSearch('AIzaSyAXHd4AyJU6owOe8wU9sWOnO4H-kdY0Uks', '5b0179e1a661156ee')
     _search_params = {
-     'q': str(new_char) + "+Character",
+     'q': str(new_char) + "+Portrait",
      'num': 1,
      'fileType': 'jpg|gif|png',
     }
     gis.search(search_params=_search_params)
-    new_char.img_url = gis.results()[0].url
-    url = 'https://animechan.vercel.app/api/'
-    headers = 'quotes/character?name=' + replace_spaces(new_char.name)
-    response = requests.get(url + headers)
-    data = response.json()
-    new_char.quote = random.choice(data)['quote']
+    try:
+      new_char.img_url = gis.results()[0].url
+      url = 'https://animechan.vercel.app/api/'
+      headers = 'quotes/character?name=' + replace_spaces(new_char.name)
+      response = requests.get(url + headers)
+      data = response.json()
+      new_char.quote = random.choice(data)['quote']
+    except:
+      return redirect('index')
+
     new_char.save()
   return redirect('detail', anime_id)
 
