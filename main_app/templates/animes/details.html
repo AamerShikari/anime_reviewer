@@ -20,72 +20,91 @@
             </div>
         </div>
     </div>
+</div>
 
+<div class="row" style="background-color: silver; border-radius: 5px;">
     <h3 class="header" style="text-align:center;">Characters</h3>
+
     {% for character in characters %}
     <a href="{% url 'character_detail' character.anime.id character.id %}" style="color:black;">
-        <div class="col s12 m6">
+        <div class="col s12 m6 ">
             <div class="card horizontal">
                 <div class="card-image">
-                    <img src="{{character.img_url}}" height="100px" width="100px">
+                    <img src="{{character.img_url}}" height="100px" width="100px" style="min-height: 100px; min-width: 75px; max-height: 100px; max-width: 75px;"> 
                 </div>
                 <div class="card-stacked">
                     <span class="card-title">{{ character.name }}</span>
-                    <p>{{character.description}}</p>
+                    <p style="text-align: center; margin-top: 5px; margin-bottom: 0 !important;">{{character.description}}</p>
                 </div>
             </div>
         </div>
     </a>
-
     {% endfor %}
-    <div class="col s12 m6">
+
+    <div class="col s12 m6 ">
         <div class="card horizontal">
             <div class="card-stacked">
-                <div class="card-content">
+                <button class="btn btn-large waves-light black" style="height: 100px;">
                     <a href="{% url 'characters_index' anime.id%}">more</a>
-                </div>
+                </button>
             </div>
         </div>
     </div>
 </div>
-<div class="col s6 offset-s3 #bdbdbd grey lighten-1">
-  <form method="post" action="{% url 'add_review' anime.id %}" class="center-align">
-    <div class="blue-text">{% csrf_token > %} {{ form.as_p }}</div>
-    <!-- <input type="submit" class="btn waves-effect waves-light" value="Add Review" /> -->
-    <button class="btn waves-effect waves-light btn-small " type="submit" name="action">ADD
-      <i class="material-icons right ">REVIEW</i>
-    </button>
-  </form>
-</div>
-<br>
+    <h3 class="center-align">Add Review</h3>
+    <div class="col s6">
+        <div class="card" style="border-radius: 20px;">
+            <div class="card-content white-text">
+                <form method="post" action="{% url 'add_review' anime.id %}" >
+                    <div class="blue-text">
+                        {% csrf_token > %}
+                        {{ form.as_table }}
+                    </div>
+                    <div class="card-action">
+                    <button class="btn waves-effect waves-light btn-small " type="submit" name="action">
+                        Add Review
+                    </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
-{% for review in reviews %}
+</div>
+
+
+<h3 class="center-align">Reviews</h3>
 <div class="centered #bdbdbd grey lighten-1">
   <table>
     <thead>
       <div class="row">
-          <div class="col s6 center-align z-depth-3">REVIEW</div>
-          <div class="col s6 center-align z-depth-3">RATING</div>
+          <div class="col s9 center-align z-depth-3">REVIEW</div>
+          <div class="col s1 center-align z-depth-3">RATING</div>
+          <div class="col s2 center-align z-depth-3"></div>
       </div>
     </thead>
-
+    {% for review in reviews %}
     <tbody>
-      <div class="row">
-        <div class="col s6 center-align blue-text left-align">{{review.content}}</div>
-        <div class="col s6 center-align blue-text left-align">{{review.rating}}</div>
+        <div class="row">
+            <div class="col s9 center-align left-align">
+                {{review.content}}
+            </div>
+            <div class="col s1 center-align  left-align">
+                {{review.rating}}
+            </div>
+            <div class="col s2 center-align left-align">
+                <a href="{% url 'reviews_delete' review.anime.id review.id %}" class="btn-small z-depth-5">
+                    Delete
+                </a>
+            </div>
         </div>
     </tbody>
+    {% endfor %}
   </table>
 
-<!-- <tr>
-    <li>CONTENT: {{review.content}}</li>
-    <li>RATING: {{review.rating}}</li>
-</tr> -->
 
 
-    <div class="card center-align">
-     <a href="{% url 'reviews_delete' review.anime.id review.id %}" class="btn-small z-depth-5">Delete</a>
-    </div>
-{% endfor %}
+
+
     
 {% endblock %}
