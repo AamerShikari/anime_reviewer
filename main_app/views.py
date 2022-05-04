@@ -122,7 +122,7 @@ def CharactersCreate(request, anime_id):
     new_char.anime_id = anime_id
     gis = GoogleImagesSearch('AIzaSyAXHd4AyJU6owOe8wU9sWOnO4H-kdY0Uks', '5b0179e1a661156ee')
     _search_params = {
-     'q': str(new_char) + "+Anime+Portrait",
+     'q': str(new_char) + "+Portrait",
      'num': 1,
      'fileType': 'jpg|gif|png',
     }
