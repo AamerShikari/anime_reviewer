@@ -44,9 +44,11 @@
     <div class="col s12 m6 ">
         <div class="card horizontal">
             <div class="card-stacked">
-                <button class="btn btn-large waves-light black " style="height: 100px;">
-                    <a class="white-text"href="{% url 'characters_index' anime.id%}">more</a>
-                </button>
+                <a class="white-text"href="{% url 'characters_index' anime.id%}">
+                    <button class="btn btn-large waves-light black " style="height: 100px; width: 100%;">
+                    more
+                    </button>
+                </a>
             </div>
         </div>
     </div>
