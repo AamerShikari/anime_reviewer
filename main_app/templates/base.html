@@ -17,13 +17,14 @@
 	<header class="navbar-fixed">
 		<nav>
 			<div class="nav-wrapper #000000 black">
-				<a href="/" class="brand-logo">Animes Reviewer</a>
+				<a href="/" class="brand-logo" style="margin-left: 20px;">Animes Reviewer</a>
 				<a href="#" data-target="mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 				<ul class="right hide-on-med-and-down">
 					<li><a href="{% url 'about' %}">About</a></li>
+					<li><a href="{% url 'all_animes' %}">All Animes</a></li>
 					{% if user.is_authenticated %}
 					<li><a href="{% url 'animes_create' %}">Add an Anime</a></li>
-					<li><a href="{% url 'index' %}">View All My Animes</a></li>
+					<li><a href="{% url 'index' %}">My Animes</a></li>
 					<li><a href="{% url 'logout' %}">Log Out</a></li>
 					{% else %}
 					<li><a href="{% url 'login' %}">Log In</a></li>
@@ -35,9 +36,10 @@
 	</header>
 		<ul class="sidenav" id="mobile">
 			<li><a href="{% url 'about' %}">About</a></li>
+			<li><a href="{% url 'all_animes' %}">All Animes</a></li>
 			{% if user.is_authenticated %}
 			<li><a href="{% url 'animes_create' %}">Add an Anime</a></li>
-			<li><a href="{% url 'index' %}">View All My Animes</a></li>
+			<li><a href="{% url 'index' %}">My Animes</a></li>
 			<li><a href="{% url 'logout' %}">Log Out</a></li>
 			{% else %}
 			<li><a href="{% url 'login' %}">Log In</a></li>
@@ -52,14 +54,17 @@
 			});
 		</script>
 
-
-
 	<main class="container">
 		{% block content %}
 		{% endblock %}
 	</main>
 	<footer class="page-footer #000000 black">
-		<div class="right">THIS IS FOOTER</div>
+		{% if user.is_authenticated %}
+			<p>{{user}} is currently logged in.</p>
+		{% else %}
+			<p>Not log in.</p>
+		{% endif %}
+			
 	</footer>
 </body>
 

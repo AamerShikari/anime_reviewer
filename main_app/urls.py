@@ -19,4 +19,5 @@ urlpatterns = [
 	path('animes/<int:anime_id>/characters/<int:character_id>', views.character_detail, name='character_detail'),
 	path('animes/<int:anime_id>/characters/<int:pk>/update/', views.character_update.as_view(), name='character_update'),
 	path('animes/<int:anime_id>/characters/<int:pk>/delete/', views.character_delete.as_view(), name='character_delete'),
+	path('animes/allanimes', views.view_all_animes, name = 'all_animes')
 ]

@@ -24,6 +24,8 @@ a:hover {
   color: red !important;
 }
 
+
+
 .horizontal p {
   font-size: 20px;
 }
@@ -46,4 +48,8 @@ a:hover {
 
 h2 {
   font-size: 75px;
+}
+
+button:hover{
+  background-color: red !important;
 }
