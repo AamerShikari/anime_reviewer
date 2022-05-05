@@ -1,4 +1,5 @@
 **Title**: Anime Reviewer
+<br>
 **Description**: Our Application acts as a discussion board and journal for users to share their thoughts, recommendations, and opinions on particular animes!
 
 **Screenshots**:
@@ -14,17 +15,17 @@
 
 Techonologies Used: PSQL, Django, Materialize, GoogleImageSearch API, AnimeChan API, Heroku, CSS, and HTML
 
-**Heroku**: https://animereviewer1.herokuapp.com/
-**Trello Board**: https://trello.com/b/bCKUzW1C/anime-reviewer
+**Heroku**: https://animereviewer1.herokuapp.com/ <br>
+**Trello Board**: https://trello.com/b/bCKUzW1C/anime-reviewer <br>
 **Pitch-deck**: https://docs.google.com/presentation/d/1iAq7qAnH3-qA0ZyCRBczsoZdm4zJYKPOVgw3Q9IJY60/edit#slide=id.p
 
-Wireframes:
+Wireframes:<br>
 
-ERD:
+ERD:<br>
 ![image](https://user-images.githubusercontent.com/100500958/167035064-84e073b0-9bf0-4d54-8fbe-470bdc5d5709.png)
 
 
-**Next Steps**: 
-*Allow user to add his/her own character image. 
+**Next Steps**: <br>
+*Allow user to add his/her own character image. <br>
 *Work on styling.
 
