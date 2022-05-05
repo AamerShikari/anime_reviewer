@@ -1,4 +1,4 @@
-**<h1>Title</h1>**: Anime Reviewer
+**<h1>Title**: Anime Reviewer</h1>
 <br>
 **Description**: Our Application acts as a discussion board and journal for users to share their thoughts, recommendations, and opinions on particular animes!
 
