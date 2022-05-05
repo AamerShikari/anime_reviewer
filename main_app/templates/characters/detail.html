@@ -9,14 +9,17 @@
 
 <div class="card">
     <div class="card-content">
-      <p>description: {{ character.description }}</p>
-      <p>Quote: {{ character.quote }}</p>
+      <p> <strong style="font-weight:700">Description:</strong> {{ character.description }} </p>
+      <p> <strong style="font-weight:700">Quote:</strong> {{ character.quote }}</p>
       <div class="card-action">
-        <a href="{% url 'character_update' character.anime.id character.id %}">Edit</a>
-        <a href="{% url 'character_delete' character.anime.id character.id %}">Delete</a>
+        <a class="orange-text darken-4" href="{% url 'character_update' character.anime.id character.id %}">Edit</a>
+        <a class="orange-text darken-4" href="{% url 'character_delete' character.anime.id character.id %}">Delete</a>
     </div>
     </div>
 </div>
-<a href="{% url 'characters_index' character.anime.id%}">back to characters list</a>
+
+  <a class="card-panel black lighten-2 white-text btn-small" href="{% url 'characters_index' character.anime.id%}">back to characters list</a>
+
+
 
 {% endblock %}
