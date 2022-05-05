@@ -145,3 +145,6 @@ def character_adding(request, anime_id):
   char_form = CharacterForm()
   return render(request, 'main_app/charcterAddingForm.html', {'anime_id':anime_id, 'char_form': char_form})
 
+def view_all_animes(request):
+    animes = Anime.objects.all()
+    return render(request, 'animes/index.html', {'animes': animes})
