@@ -13,10 +13,12 @@
                     <p><strong>Language:</strong> {{ anime.language }}</p>
                     <p><strong>Description:</strong> {{ anime.description }}</p>
                 </div>
+                {% if user == anime.user %}
                 <div class="card-action" style="text-align: right;">
                     <a class="orange-text darken-4" href="{% url 'animes_update' anime.id %}">Edit</a>
                     <a class="orange-text darken-4" href="{% url 'animes_delete' anime.id %}">Delete</a>
                 </div>
+                {% endif %}
             </div>
         </div>
     </div>
@@ -91,10 +93,12 @@
             <div class="col s1 center-align  left-align">
                 {{review.rating}}
             </div>
-            <div class="col s2 center-align left-align">
+            <div class="col s2 center-align left-align">                  
+                {% if user == anime.user %}
                 <a href="{% url 'reviews_delete' review.anime.id review.id %}" class="btn-small z-depth-5 black">
                     Delete
                 </a>
+                {% endif %}
             </div>
         </div>
     </tbody>
