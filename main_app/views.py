@@ -47,7 +47,7 @@ def animes_index(request):
     animes = Anime.objects.filter(user=request.user)
     return render(request, 'animes/index.html', {'animes': animes})
   
-@login_required
+
 def animes_detail(request, anime_id):
     anime = Anime.objects.get(id=anime_id)
 
@@ -56,24 +56,27 @@ def animes_detail(request, anime_id):
     characters = Character.objects.filter(anime=anime_id)[:5]
     return render(request, 'animes/details.html', {'anime': anime,'form':form,'reviews':reviews, 'characters': characters})
 
-@login_required
+
 def characters_index(request, anime_id):
     characters = Character.objects.filter(anime=anime_id)
     anime = Anime.objects.get(id=anime_id)
     return render(request, 'characters/index.html', {'characters': characters, 'anime':anime})
 
-@login_required
+
 def character_detail(request, anime_id, character_id):
     character = Character.objects.get(id=character_id)
     return render(request, 'characters/detail.html', {'character': character})
+
 
 class character_update(LoginRequiredMixin, UpdateView):
   model = Character
   fields =['name','description']
 
+
 class character_delete(LoginRequiredMixin, DeleteView):
   model = Character
   success_url = '/animes/'
+
 
 class AnimeCreate(LoginRequiredMixin, CreateView):
   model = Anime
@@ -91,10 +94,12 @@ class AnimeCreate(LoginRequiredMixin, CreateView):
     form.instance.img_url = gis.results()[0].url
     return super().form_valid(form)
 
+
 class AnimeUpdate(LoginRequiredMixin, UpdateView):
   model = Anime
   fields =['category','language','description']
   
+
 class AnimeDelete(LoginRequiredMixin, DeleteView):
   model = Anime
   success_url = '/animes/'
@@ -108,6 +113,7 @@ def  add_review(request, anime_id):
     new_review.save()
   
   return redirect('detail', anime_id=anime_id)
+
 
 class ReviewDelete(LoginRequiredMixin, DeleteView):
   model = Review
