@@ -50,7 +50,6 @@ def animes_index(request):
 
 def animes_detail(request, anime_id):
     anime = Anime.objects.get(id=anime_id)
-
     form = ReviewForm()
     reviews = Review.objects.filter(anime=anime_id)
     characters = Character.objects.filter(anime=anime_id)[:5]
