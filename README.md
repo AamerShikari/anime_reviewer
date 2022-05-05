@@ -11,7 +11,7 @@
 
 
 
-Techonologies Used: PSQL, Django, Materialize, GoogleImageSearch API, AnimeChan API, Heroku, CSS, and HTML
+**Techonologies Used**: PSQL, Django, Materialize, GoogleImageSearch API, AnimeChan API, Heroku, CSS, and HTML
 
 **Heroku**: https://animereviewer1.herokuapp.com/ <br>
 **Trello Board**: https://trello.com/b/bCKUzW1C/anime-reviewer <br>
