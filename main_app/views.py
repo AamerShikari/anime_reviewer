@@ -79,7 +79,7 @@ class AnimeCreate(LoginRequiredMixin, CreateView):
   model = Anime
   fields =['title','category','language','description']
   def form_valid(self, form):
-    form.instance.title = form.instance.title.capitalize()
+    form.instance.title = form.instance.title.title()
     form.instance.user = self.request.user  # form.instance is the anime
     gis = GoogleImagesSearch('AIzaSyAXHd4AyJU6owOe8wU9sWOnO4H-kdY0Uks', '5b0179e1a661156ee')
     _search_params = {
@@ -118,7 +118,7 @@ def CharactersCreate(request, anime_id):
   form = CharacterForm(request.POST)
   if form.is_valid():
     new_char = form.save(commit=False)
-    new_char.name = new_char.name.capitalize()
+    new_char.name = new_char.name.title()
     new_char.anime_id = anime_id
     gis = GoogleImagesSearch('AIzaSyAXHd4AyJU6owOe8wU9sWOnO4H-kdY0Uks', '5b0179e1a661156ee')
     _search_params = {
